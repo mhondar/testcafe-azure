@@ -1,0 +1,4 @@
+{
+    "prod": "https://prodappic.z20.web.core.windows.net/portada",
+    "preprod": "https://devappic.z20.web.core.windows.net/portada"
+}

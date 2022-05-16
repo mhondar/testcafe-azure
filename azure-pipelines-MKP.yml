@@ -1,0 +1,128 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+parameters:
+- name: enviroment
+  displayName: 'Seleccione Ambiente'  
+  type: string
+  default: prod
+  values:
+  - prod
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+  # Replace '10.14' with the latest Node.js LTS version
+    versionSpec: '14.17.6'
+  displayName: 'Install Node.js'
+  
+- script: npm install
+  displayName: 'Install Dependencies'
+
+- script: npm install --save-dev testcafe -g
+  displayName: 'Install TestCafe'
+  
+- script: npm install --save testcafe-reporter-cucumber-json
+  displayName: 'Install Reporter json '  
+
+- script: npm install --save downloads-folder
+  displayName: 'Install Downloads Folder' 
+
+#- script: npm install --save @ffmpeg-installer/ffmpeg
+#  displayName: 'Install ffmpeg Video Record' 
+  
+#- script: ENV=${{ parameters.enviroment }} testcafe chrome:headless ./test/MKP/ --skip-js-errors --video reports/videosReport --video-options failedOnly=true --reporter cucumber-json,xunit:report.xml --reporter-json-folder=reports/jsonReport
+#  displayName: 'Run TestCafe Tests'
+
+- script: ENV=${{ parameters.enviroment }} testcafe chrome:headless ./test/MKP/ -f "Suite Pruebas MKP iConstruye Usuario" --skip-js-errors --video reports/videosReport --video-options failedOnly=true --reporter cucumber-json,xunit:report01.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'Suite Pruebas MKP iConstruye Usuario'
+
+- script: ENV=${{ parameters.enviroment }} testcafe chrome:headless ./test/MKP/ -f "Suite Pruebas MKP iConstruye Cotizaciones" --skip-js-errors --video reports/videosReport --video-options failedOnly=true --reporter cucumber-json,xunit:report02.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'Suite Pruebas MKP iConstruye Cotizaciones'  
+
+- script: ENV=${{ parameters.enviroment }} testcafe chrome:headless ./test/MKP/ -f "Suite Pruebas MKP iConstruye Órdenes de Compra" --skip-js-errors --video reports/videosReport --video-options failedOnly=true --reporter cucumber-json,xunit:report03.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'Suite Pruebas MKP iConstruye Órdenes de Compra' 
+
+- script: ENV=${{ parameters.enviroment }} testcafe chrome:headless ./test/MKP/ -f "Suite Pruebas MKP iConstruye Monitor de Obra" --skip-js-errors --video reports/videosReport --video-options failedOnly=true --reporter cucumber-json,xunit:report04.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'Suite Pruebas MKP iConstruye Monitor de Obra'
+
+- script: ENV=${{ parameters.enviroment }} testcafe chrome:headless ./test/MKP/ -f "Suite Pruebas MKP iConstruye Subcontratos" --skip-js-errors --video reports/videosReport --video-options failedOnly=true --reporter cucumber-json,xunit:report05.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'Suite Pruebas MKP iConstruye Subcontratos'
+
+- script: ENV=${{ parameters.enviroment }} testcafe chrome:headless ./test/MKP/ -f "Suite Pruebas MKP iConstruye Configuracion" --skip-js-errors --video reports/videosReport --video-options failedOnly=true --reporter cucumber-json,xunit:report06.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'Suite Pruebas MKP iConstruye Configuracion'
+
+- script: ENV=${{ parameters.enviroment }} testcafe chrome:headless ./test/MKP/ -f "Suite Pruebas MKP iConstruye Despachos" --skip-js-errors --video reports/videosReport --video-options failedOnly=true --reporter cucumber-json,xunit:report07.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'Suite Pruebas MKP iConstruye Despachos'
+
+- script: ENV=${{ parameters.enviroment }} testcafe chrome:headless ./test/MKP/ -f "Suite Pruebas MKP iConstruye Negocios Anticipados" --skip-js-errors --video reports/videosReport --video-options failedOnly=true --reporter cucumber-json,xunit:report08.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'Suite Pruebas MKP iConstruye Negocios Anticipados'
+
+- script: ENV=${{ parameters.enviroment }} testcafe chrome:headless ./test/MKP/ -f "Suite Pruebas MKP iConstruye Notas Corrección" --skip-js-errors --video reports/videosReport --video-options failedOnly=true --reporter cucumber-json,xunit:report09.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'Suite Pruebas MKP iConstruye Notas Corrección'
+
+- script: ENV=${{ parameters.enviroment }} testcafe chrome:headless ./test/MKP/ -f "Suite Pruebas MKP iConstruye Documento Tributario" --skip-js-errors --video reports/videosReport --video-options failedOnly=true --reporter cucumber-json,xunit:report10.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'Suite Pruebas MKP iConstruye Documento Tributario'
+
+- script: npm run report
+  condition: succeededOrFailed()
+  displayName: 'Multiple Cucumber HTML Report Generate'
+    
+- task: PublishTestResults@2
+  condition: succeededOrFailed() 
+  inputs:
+    testResultsFiles: 'report*.xml'
+    testResultsFormat: 'JUnit'
+    
+- task: PublishCucumberReport@1
+  condition: succeededOrFailed()
+  displayName: 'Publish Cucumber Report'
+  inputs:
+    jsonDir: ./reports/jsonReport
+    outputPath: ./reports
+    theme: hierarchy
+    name: 'Reporte de Pruebas Automaticas en MKP'
+    title: 'Reporte de Pruebas Automaticas en MKP'
+
+- task: PublishPipelineArtifact@1
+  condition: succeededOrFailed()
+  displayName: 'Publish HTML Report'
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/s/reports/htmlReport'
+    artifactType: 'pipeline'
+    artifactName: 'htmlReport'
+
+# - task: PublishPipelineArtifact@1
+#   condition: failed()
+#   displayName: 'Publish Video Record'
+#   inputs:
+#     targetPath: '$(Pipeline.Workspace)/s/reports/videosReport'
+#     artifactType: 'pipeline'
+#     artifactName: 'videoRecord'    
+
+# - task: JakubRumpca.azure-pipelines-html-report.PublishHtmlReport.PublishHtmlReport@1
+#   displayName: 'Publish HTML Report'
+#   inputs:
+#     reportDir: '$(Build.SourcesDirectory)/reports/htmlReport/index.html'
+    
+schedules:
+  - cron: "0 11 * * *"
+    displayName: Daily Test Execution
+    branches:
+      include:
+      - master
+    always: true

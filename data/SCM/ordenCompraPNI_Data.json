@@ -1,0 +1,10 @@
+{
+    "nombreOC" : "Prueba Automatizada OCPNI ",
+    "nombreProveedor" : "sweetcat",
+    "rut" : "16183171-9",
+    "codigo" : "004000M2",
+    "precio": "500",
+    "glosa": "Prueba Automatizada QA",
+    "comentario": "Prueba Automatizada QA",
+    "cuentaCosto" : "28"
+}

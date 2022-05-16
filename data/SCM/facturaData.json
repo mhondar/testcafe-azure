@@ -1,0 +1,11 @@
+{
+    "rutProveedor" : "4856053-9",
+    "sucursal" : "proveedor selenium",
+    "tipoFactura" : "Factura Electrónica",
+    "numeroFactura" : "500500",
+    "folioUnico" : "500500",
+    "motivo" : "Prueba Automatizada QA",
+    "totalNeto" : "2000",
+    "iva" : "380",
+    "comentarioReversa" : "Prueba Automatizada Reversa de Factura"
+}

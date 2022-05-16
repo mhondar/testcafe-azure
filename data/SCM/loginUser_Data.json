@@ -1,0 +1,70 @@
+{
+    "prod": {
+         "implantaciones":{
+                   "usuario": "nlorca",
+                   "organizacion": "implantaciones",
+                   "password": "qwerty",
+                   "name": "Nelson Lorca"
+            },
+            "comprador": {
+                "usuario": "nlorca",
+                "organizacion": "compradorselenium",
+                "password": "ratqtpkb",
+                "name": "Nelson Lorca",
+                "centroGestion" : "CG TestCafe"
+            },
+            "proveedor": {
+                "usuario": "nlorca",
+                "organizacion": "proveedorselenium",
+                "password": "p123",
+                "name": "Nelson Lorca",
+                "centroGestion" : "proveedor selenium"
+            },
+            "confoneclick":{
+                "usuario": "admin2",
+                "organizacion": "confoneclick",
+                "password": "qa1234",
+                "centroGestion" : "Obra Uno"
+            },
+            "aprobador1":{
+                "usuario": "aprobador1",
+                "organizacion": "compradorselenium",
+                "password": "cahmnetq",
+                "centroGestion" : "CG TestCafe"
+            }
+    },
+    "preprod": {
+        "implantaciones":{
+                  "usuario": "nlorca",
+                  "organizacion": "implantaciones",
+                  "password": "qwerty",
+                  "name": "Nelson Lorca"
+           },
+           "comprador": {
+               "usuario": "nlorca",
+               "organizacion": "compradorselenium",
+               "password": "c123",
+               "name": "Nelson Lorca",
+               "centroGestion" : "CG TestCafe"
+           },
+           "proveedor": {
+               "usuario": "nlorca",
+               "organizacion": "proveedorselenium",
+               "password": "p123",
+               "name": "Nelson Lorca",
+               "centroGestion" : "proveedor selenium"
+           },
+           "confoneclick":{
+               "usuario": "admin2",
+               "organizacion": "confoneclick",
+               "password": "qa1234",
+               "centroGestion" : "Obra Uno"
+           },
+           "aprobador1":{
+               "usuario": "aprobador1",
+               "organizacion": "compradorselenium",
+               "password": "c123",
+               "centroGestion" : "CG TestCafe"
+           }
+   }
+}

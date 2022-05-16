@@ -1,0 +1,26 @@
+[
+    {
+        "codigo": "QA 1",
+        "descripcion": "Test QA 1",
+        "adicional": "QA 1",
+        "precioUnitario": "100"
+    },
+    {
+        "codigo": "QA 2",
+        "descripcion": "Test QA 2",
+        "adicional": "QA 2",
+        "precioUnitario": "200"
+    },
+    {
+        "codigo": "QA 3",
+        "descripcion": "Test QA 3",
+        "adicional": "QA 3",
+        "precioUnitario": "300"
+    },
+    {
+        "codigo": "QA 4",
+        "descripcion": "Test QA 4",
+        "adicional": "QA 4",
+        "precioUnitario": "400"
+    }
+] 

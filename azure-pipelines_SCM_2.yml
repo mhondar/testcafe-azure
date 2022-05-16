@@ -1,0 +1,118 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+parameters:
+- name: enviroment
+  displayName: 'Seleccione Ambiente'  
+  type: string
+  default: prod
+  values:
+  - prod
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+  # Replace '10.14' with the latest Node.js LTS version
+    versionSpec: '14.17.6'
+  displayName: 'Install Node.js'
+  
+- script: npm install
+  displayName: 'Install Dependencies'
+
+- script: npm install --save-dev testcafe -g
+  displayName: 'Install TestCafe'
+  
+- script: npm install --save testcafe-reporter-cucumber-json
+  displayName: 'Install Reporter json '  
+
+- script: npm install --save downloads-folder
+  displayName: 'Install Downloads Folder'  
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -f "Suite Pruebas iConstruye Crear Orden de Compra" --test-meta problem=false --skip-js-errors --reporter cucumber-json,xunit:report14.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'Suite Pruebas iConstruye Crear Orden de Compra'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-63549 Validar Crear una Orden de Compra usando el motor de Búsqueda de Productos de 1 Producto sin Distribuir Cuentas de Costo" --skip-js-errors --reporter cucumber-json,xunit:report63549.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-63549 Validar Crear una Orden de Compra usando el motor de Búsqueda de Productos de 1 Producto sin Distribuir Cuentas de Costo' 
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-63560 Validar Crear una Orden de Compra usando el motor de Búsqueda de Productos de más de 1 Producto con Distribución de Cuenta de costo por Cantidad" --skip-js-errors --reporter cucumber-json,xunit:report63560.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-63560 Validar Crear una Orden de Compra usando el motor de Búsqueda de Productos de más de 1 Producto con Distribución de Cuenta de costo por Cantidad' 
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-63561 Validar Crear una Orden de Compra usando el motor de Búsqueda de Productos de 1 Producto Con Distribución de Cuentas de Costo por Porcentaje" --skip-js-errors --reporter cucumber-json,xunit:report63561.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-63561 Validar Crear una Orden de Compra usando el motor de Búsqueda de Productos de 1 Producto Con Distribución de Cuentas de Costo por Porcentaje' 
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-63551 Validar Crear una Orden de Compra usando el Maestro de Productos agregando 1 producto" --skip-js-errors --reporter cucumber-json,xunit:report63551.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-63551 Validar Crear una Orden de Compra usando el Maestro de Productos agregando 1 producto' 
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-63552 Validar Crear una Orden de Compra usando el Maestro de Productos agregando varios productos" --skip-js-errors --reporter cucumber-json,xunit:report63552.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-63552 Validar Crear una Orden de Compra usando el Maestro de Productos agregando varios productos' 
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60977 Validar Aprobar orden de compra desde lado proveedor" --skip-js-errors --reporter cucumber-json,xunit:report60977.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60977 Validar Aprobar orden de compra desde lado proveedor' 
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -f "Suite Pruebas iConstruye Bodega Ingresar Orden de Compra" --skip-js-errors --reporter cucumber-json,xunit:report01.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'Suite Pruebas iConstruye Bodega Ingresar Orden de Compra' 
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-63375 Validar Reversa Recepciones" --skip-js-errors --reporter cucumber-json,xunit:report63375.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-63375 Validar Reversa Recepciones' 
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-65546 Validar submenú Crear Subcontrato" --skip-js-errors --reporter cucumber-json,xunit:report65546.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-65546 Validar submenú Crear Subcontrato'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-65228 Crear subcontrato con 4 productos por maestro y subcontratista emite factura" --skip-js-errors --reporter cucumber-json,xunit:report65228.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-65228 Crear subcontrato con 4 productos por maestro y subcontratista emite factura'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-65920 Crear subcontrato agregando un producto y subcontratista sin emitir factura" --skip-js-errors --reporter cucumber-json,xunit:report65920.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-65920 Crear subcontrato agregando un producto y subcontratista sin emitir factura'
+
+- script: npm run report
+  condition: succeededOrFailed()
+  displayName: 'Multiple Cucumber HTML Report Generate'
+    
+- task: PublishTestResults@2
+  condition: succeededOrFailed() 
+  inputs:
+    testResultsFiles: 'report*.xml'
+    testResultsFormat: 'JUnit'
+    
+- task: PublishCucumberReport@1
+  condition: succeededOrFailed()
+  displayName: 'Publish Cucumber Report'
+  inputs:
+    jsonDir: ./reports/jsonReport
+    outputPath: ./reports
+    theme: hierarchy
+    name: 'Reporte de Pruebas Automaticas en SCM 2'
+    title: 'Reporte de Pruebas Automaticas en SCM 2'
+
+- task: PublishPipelineArtifact@1
+  condition: succeededOrFailed()
+  displayName: 'Publish HTML Report'
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/s/reports/htmlReport'
+    artifactType: 'pipeline'
+    artifactName: 'htmlReport'
+
+schedules:
+  - cron: "0 10 * * *"
+    displayName: Daily Test Execution
+    branches:
+      include:
+      - master
+    always: true

@@ -1,0 +1,178 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+parameters:
+- name: enviroment
+  displayName: 'Seleccione Ambiente'  
+  type: string
+  default: prod
+  values:
+  - prod
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+  # Replace '10.14' with the latest Node.js LTS version
+    versionSpec: '14.17.6'
+  displayName: 'Install Node.js'
+  
+- script: npm install
+  displayName: 'Install Dependencies'
+
+- script: npm install --save-dev testcafe -g
+  displayName: 'Install TestCafe'
+  
+- script: npm install --save testcafe-reporter-cucumber-json
+  displayName: 'Install Reporter json '  
+
+- script: npm install --save downloads-folder
+  displayName: 'Install Downloads Folder'  
+  
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-59616 Validar creación de un pedido por la opción Maestro" --skip-js-errors --reporter cucumber-json,xunit:report59616_1.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-59616 Validar creación de un pedido por la opción Maestro 1'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-59616 Validar creación de un pedido por la opción Maestro" --skip-js-errors --reporter cucumber-json,xunit:report59616_2.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-59616 Validar creación de un pedido por la opción Maestro 2'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-59616 Validar creación de un pedido por la opción Maestro" --skip-js-errors --reporter cucumber-json,xunit:report59616_3.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-59616 Validar creación de un pedido por la opción Maestro 3'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-59616 Validar creación de un pedido por la opción Maestro" --skip-js-errors --reporter cucumber-json,xunit:report59616_4.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-59616 Validar creación de un pedido por la opción Maestro 4'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-59616 Validar creación de un pedido por la opción Maestro" --skip-js-errors --reporter cucumber-json,xunit:report59616_5.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-59616 Validar creación de un pedido por la opción Maestro 5'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-59616 Validar creación de un pedido por la opción Maestro" --skip-js-errors --reporter cucumber-json,xunit:report59616_6.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-59616 Validar creación de un pedido por la opción Maestro 6'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-59616 Validar creación de un pedido por la opción Maestro" --skip-js-errors --reporter cucumber-json,xunit:report59616_7.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-59616 Validar creación de un pedido por la opción Maestro 7'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-59616 Validar creación de un pedido por la opción Maestro" --skip-js-errors --reporter cucumber-json,xunit:report59616_8.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-59616 Validar creación de un pedido por la opción Maestro 8'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-59616 Validar creación de un pedido por la opción Maestro" --skip-js-errors --reporter cucumber-json,xunit:report59616_9.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-59616 Validar creación de un pedido por la opción Maestro 9'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-59616 Validar creación de un pedido por la opción Maestro" --skip-js-errors --reporter cucumber-json,xunit:report59616_10.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-59616 Validar creación de un pedido por la opción Maestro 10'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60044 Validar compra de un pedido de Materiales" --skip-js-errors --reporter cucumber-json,xunit:report60044_1.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60044 Validar compra de un pedido de Materiales 1'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60044 Validar compra de un pedido de Materiales" --skip-js-errors --reporter cucumber-json,xunit:report60044_2.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60044 Validar compra de un pedido de Materiales 2'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60044 Validar compra de un pedido de Materiales" --skip-js-errors --reporter cucumber-json,xunit:report60044_3.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60044 Validar compra de un pedido de Materiales 3'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60044 Validar compra de un pedido de Materiales" --skip-js-errors --reporter cucumber-json,xunit:report60044_4.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60044 Validar compra de un pedido de Materiales 4'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60044 Validar compra de un pedido de Materiales" --skip-js-errors --reporter cucumber-json,xunit:report60044_5.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60044 Validar compra de un pedido de Materiales 5'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60044 Validar compra de un pedido de Materiales" --skip-js-errors --reporter cucumber-json,xunit:report60044_6.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60044 Validar compra de un pedido de Materiales 6'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60044 Validar compra de un pedido de Materiales" --skip-js-errors --reporter cucumber-json,xunit:report60044_7.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60044 Validar compra de un pedido de Materiales 7'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60044 Validar compra de un pedido de Materiales" --skip-js-errors --reporter cucumber-json,xunit:report60044_8.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60044 Validar compra de un pedido de Materiales 8'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60044 Validar compra de un pedido de Materiales" --skip-js-errors --reporter cucumber-json,xunit:report60044_9.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60044 Validar compra de un pedido de Materiales 9'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60045 Validar crear Cotización de pedido" --skip-js-errors --reporter cucumber-json,xunit:report60045_1.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60045 Validar crear Cotización de pedido 1'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60045 Validar crear Cotización de pedido" --skip-js-errors --reporter cucumber-json,xunit:report60045_2.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60045 Validar crear Cotización de pedido 2'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60045 Validar crear Cotización de pedido" --skip-js-errors --reporter cucumber-json,xunit:report60045_3.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60045 Validar crear Cotización de pedido 3'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60045 Validar crear Cotización de pedido" --skip-js-errors --reporter cucumber-json,xunit:report60045_4.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60045 Validar crear Cotización de pedido 4'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60045 Validar crear Cotización de pedido" --skip-js-errors --reporter cucumber-json,xunit:report60045_5.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60045 Validar crear Cotización de pedido 5'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60045 Validar crear Cotización de pedido" --skip-js-errors --reporter cucumber-json,xunit:report60045_6.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60045 Validar crear Cotización de pedido 6'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60045 Validar crear Cotización de pedido" --skip-js-errors --reporter cucumber-json,xunit:report60045_7.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60045 Validar crear Cotización de pedido 7'
+
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./test/SCM -t "TC-60045 Validar crear Cotización de pedido" --skip-js-errors --reporter cucumber-json,xunit:report60045_8.xml --reporter-json-folder=reports/jsonReport
+  condition: succeededOrFailed()
+  displayName: 'TC-60045 Validar crear Cotización de pedido 8'
+
+- script: npm run report
+  condition: succeededOrFailed()
+  displayName: 'Multiple Cucumber HTML Report Generate'
+    
+- task: PublishTestResults@2
+  condition: succeededOrFailed() 
+  inputs:
+    testResultsFiles: 'report*.xml'
+    testResultsFormat: 'JUnit'
+    
+- task: PublishCucumberReport@1
+  condition: succeededOrFailed()
+  displayName: 'Publish Cucumber Report'
+  inputs:
+    jsonDir: ./reports/jsonReport
+    outputPath: ./reports
+    theme: hierarchy
+    name: 'Prueba MKP Cotizaciones'
+    title: 'Prueba MKP Cotizaciones'
+
+- task: PublishPipelineArtifact@1
+  condition: succeededOrFailed()
+  displayName: 'Publish HTML Report'
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/s/reports/htmlReport'
+    artifactType: 'pipeline'
+    artifactName: 'htmlReport'
+
+schedules:
+  - cron: "0 5 * * *"
+    displayName: Daily Test Execution
+    branches:
+      include:
+      - master
+    always: true

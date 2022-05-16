@@ -1,0 +1,45 @@
+{
+  "name": "automatizacionqa",
+  "version": "1.0.0",
+  "description": "Pruebas de Concepto de Pruebas Automatizadas de iConstruye con TestCafé",
+  "main": "index.js",
+  "scripts": {
+    "test": "ENV=prod testcafe ./test --skip-js-errors",
+    "test_bs": "ENV=prod testcafe browserstack:chrome@79.0:Windows 10 ./test --skip-js-errors",
+    "test_app_pp_local": "ENV=preprod testcafe \"chrome:emulation:device=iphone X;cdpPort=9223\" ./test --skip-js-errors",
+    "test_app_pp_cloud": "ENV=preprod testcafe \"chrome:headless:emulation:device=iphone X;cdpPort=9223\" ./test --skip-js-errors",
+    "test_fixture": "ENV=prod testcafe ./test/SCM/14-CrearOrdenCompraTest.js --skip-js-errors",
+    "test_mkp_smog": "ENV=prod testcafe ./test/MKP/ --test-meta type=smog --skip-js-errors",
+    "test_mkp_regresion": "ENV=prod testcafe ./test/MKP/ --skip-js-errors",
+    "test_scm_regresion": "ENV=prod testcafe ./test/SCM/ --skip-js-errors",
+    "test_ocl_regresion": "ENV=prod testcafe ./test/OCL/ --skip-js-errors",
+    "MKP_smog_test_cloud": "ENV=prod testcafe chrome:headless ./test/MKP --test-meta type=smog --skip-js-errors --reporter cucumber-json,xunit:report.xml --reporter-json-folder=reports/jsonReport",
+    "MKP_regresion_test_local": "ENV=prod testcafe chrome ./test/MKP/ --skip-js-errors --reporter cucumber-json --reporter-json-folder=reports/jsonReport",
+    "MKP_regresion_test_cloud": "ENV=prod testcafe chrome:headless ./test/MKP/ --skip-js-errors --reporter cucumber-json,xunit:report.xml --reporter-json-folder=reports/jsonReport",
+    "SCM_regresion_test_local": "ENV=prod testcafe chrome ./test/SCM/ --skip-js-errors --reporter cucumber-json --reporter-json-folder=reports/jsonReport",
+    "SCM_regresion_test_video_local": "ENV=prod testcafe chrome ./test/SCM/ --skip-js-errors --reporter cucumber-json --reporter-json-folder=reports/jsonReport --video reports/videos --video-options failedOnly=true",
+    "OCL_regresion_test_local": "ENV=prod testcafe chrome ./test/OCL/ --skip-js-errors --reporter cucumber-json --reporter-json-folder=reports/jsonReport",
+    "OCL_regresion_test_cloud": "ENV=prod testcafe chrome ./test/OCL/ --skip-js-errors --reporter cucumber-json --reporter-json-folder=reports/jsonReport",
+    "report": "node ./helpers/report-generator.js",
+    "custom_run": "ENV=prod testcafe chrome:headless ./test/${{ parameters.fixture }} --skip-js-errors --reporter cucumber-json,xunit:report.xml --reporter-json-folder=reports/jsonReport"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://iccorpiconstruye.visualstudio.com/AutomatizacionQA/_git/AutomatizacionQA"
+  },
+  "author": "Marisleydi Hondar",
+  "license": "ISC",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "downloads-folder": "^3.0.1",
+    "pretty-error": "^4.0.0",
+    "testcafe": "^1.18.1",
+    "testcafe-browser-provider-browserstack": "^1.13.2",
+    "testcafe-reporter-cucumber-json": "^6.3.0",
+    "xpath-to-css": "^1.0.5"
+  },
+  "devDependencies": {
+    "multiple-cucumber-html-reporter": "^1.18.0",
+    "testcafe-reporter-xunit": "^2.1.0"
+  }
+}

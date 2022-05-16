@@ -1,0 +1,30 @@
+{
+    "data1": {
+        "nombreSubcontrato": "Subcontrato QA maestro ",
+        "periocidad": "30",
+        "comentario": "Prueba Automatizada QA maestro",
+        "nombreProveedor": "Proveedor PRUEBA Selenium",
+        "sucursal": "proveedor selenium", 
+        "cantProductos": "4",
+        "descripcionDescuento": "Descuento QA",
+        "tipoDescuento": "Lineal",
+        "formato": "Monto",
+        "valor": "20"
+    },
+
+    "data2": {
+        "nombreSubcontrato": "Subcontrato QA agregar ",
+        "periocidad": "60",
+        "comentario": "Prueba Automatizada QA agregar",
+        "nombreProveedor": "Proveedor PRUEBA Selenium",
+        "sucursal": "proveedor selenium", 
+        "descripcion": "Prueba QA",
+        "precio": "200",
+        "cuentaCosto": "28",
+        "descripcionDescuento": "Descuento QA",
+        "tipoDescuento": "Lineal",
+        "formato": "Porcentaje",
+        "valor": "10"
+    }
+  
+}

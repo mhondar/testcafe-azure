@@ -1,0 +1,17 @@
+{
+    "descripcionCot" : "Prueba Cotización Automatización",
+    "fechaCierre" : "27-12-2023",
+    "fechaAdjudicacion" : "28-12-2023",
+    "proveedor" : "Proveedor PRUEBA Selenium",
+    "rut": "4856053-9",
+    "producto": "rotomartillo",
+    "cuentaCosto" : "28", 
+    "codigo" : "181845",
+    "cantidad" : "1",
+    "glosa": "Prueba QA Automatizada",
+    "fechaEntrega" : "28-12-2022"
+
+
+    
+    
+}

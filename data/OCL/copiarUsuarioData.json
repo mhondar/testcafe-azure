@@ -1,0 +1,14 @@
+{
+    "prod": {
+        "copiarUsuario": {
+            "usuario": "Pablo Prueba Prueba (pprueba)"
+        },
+        "reemplazarUsuario":{
+            "usuario": "Tristan Agustin Figueras (tagustin)"
+        }
+        
+    }
+    
+}
+
+

@@ -1,0 +1,24 @@
+{
+
+    "prod": {
+        "userCot": {
+            "user": "camilahormazabal.gianoni@gmail.com",
+            "password": "1234567",
+            "nombre": "Camila",
+            "apellido": "Hormazabal",
+            "telefono": "+56957768620",
+            "nombreCompleto": "CAMILA LILY HORMAZABAL GIANONI"
+        },
+        "userGlobal": {
+            "user": "nelson.lorca@iconstruye.com",
+            "password": "aBgpoKsj",
+            "nombre": "Nelson",
+            "apellido": "Lorca",
+            "telefono": "+56957768620",
+            "nombreCompleto": "NELSON ANDRES LORCA GONZALEZ"
+        }
+   
+    }
+
+    
+}

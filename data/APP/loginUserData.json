@@ -1,0 +1,59 @@
+{
+    "prod": {
+        "implantaciones": {
+            "usuario": "nlorca",
+            "organizacion": "implantaciones",
+            "password": "qwerty",
+            "empresaName": "implantaciones",
+            "name": "Nelson Lorca",
+            "pin": "2244",
+            "personaRetira": "Mari",
+            "destino": "Destino Departamentos",
+            "item": "Demoledor",
+            "bodega": "Bodega Norte",
+            "producto": "Arriendo Demoledor 30 kilos"
+        },
+        "comprador": {
+            "usuario": "nlorca",
+            "organizacion": "compradorselenium",
+            "password": "ratqtpkb",
+            "empresaName": "CompradorSelenium",
+            "name": "Nelson Lorca",
+			"pin": "2244",
+            "personaRetira": "Mari",
+            "destino": "departamento",
+            "item": "Guante",
+            "bodega": "bodega principal",
+            "producto": "GUANTES NEGROS SOFT",
+            "partida": "santa isabel"
+        }
+    },
+    "preprod": {
+        "implantaciones": {
+            "usuario": "nlorca",
+            "organizacion": "implantaciones",
+            "password": "nlorca",
+            "empresaName": "implantaciones",
+            "name": "Nelson Lorca G.",
+            "pin": "2244",
+            "personaRetira": "Mari",
+            "destino": "DPTO 287",
+            "item": "Guante",
+            "bodega": "Bodega Stgo"
+        },
+        "comprador": {
+            "usuario": "nlorca",
+            "organizacion": "compradorselenium",
+            "password": "c123",
+            "empresaName": "CompradorSelenium",
+            "name": "Nelson Lorca",
+            "pin": "2244",
+            "personaRetira": "Mari",
+            "destino": "Destino Cocina",
+            "item": "Guante",
+            "bodega": "bodega principal",
+            "producto": "guante cabritilla",
+            "partida": "partida A"
+        }
+   }
+}

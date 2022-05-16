@@ -1,0 +1,15 @@
+{
+    "nombreOC" : "Prueba Automatizada OC",
+    "rut" : "4856053-9",
+    "sucursal": "proveedor selenium",
+    "notas": "Prueba Automatizacion QA Notas", 
+    "precio": "100",
+    "glosa": "Prueba Automatizada QA",
+    "comentario": "Prueba Automatizada QA",
+    "cuentaCosto": "28",
+    "empresa" : "Prueba Comprador Selenium",
+    "estado" : "Nueva Orden de Compra",
+    "estadoAceptada" : "Aceptada",
+    "estadoGuardada" : "Guardada",
+    "ccGestion" : "CG TestCafe"
+}

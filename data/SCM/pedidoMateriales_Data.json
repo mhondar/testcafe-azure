@@ -1,0 +1,31 @@
+{
+    "agregar": {
+        "nombrePedido" : "PM Prueba Automatizada ",
+        "notasPedido" : "Pedido de Materiales Prueba Automatizada Nota",
+        "filtroDescripcion" : "guante",
+        "cantidad": "5",
+        "glosa": " Pedido de Materiales Prueba Automatizada Glosa",
+        "diasDespacho": "5",
+        "comentarios": "Pedido de Materiales Prueba Automatizada Comentarios",
+        "porcentaje1" : "60",
+        "porcentaje2" : "40",
+        "precio": "100",
+        "cuentaCosto": "28",
+        "codigo" : "95462"
+    },
+
+    "maestro": {
+        "nombrePedido" : "PM Maestro PA ",
+        "notasPedido" : "Pedido de Materiales Maestro Prueba Automatizada Nota",
+        "filtroDescripcion" : "martillo",
+        "cantidad": "5",
+        "glosa": " Pedido de Materiales Maestro Prueba Automatizada GLosa",
+        "diasDespacho": "5",
+        "comentarios": "Pedido de Matriales Maestro Prueba Automatizada Comentarios",
+        "porcentaje1" : "60",
+        "porcentaje2" : "40", 
+        "cuentaCosto" : "28"
+    }
+ 
+
+}

@@ -1,0 +1,275 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+parameters:
+- name: enviroment
+  displayName: 'Seleccione Ambiente'  
+  type: string
+  values:
+  - prod
+
+- name: fixture
+  displayName: 'Seleccione la Suite de Pruebas'  
+  type: string
+  values:
+  - test
+  - test/MKP
+  - test/MKP/01-UsuarioTest.js
+  - test/MKP/02-CotizacionesTest.js
+  - test/MKP/03-OrdenesCompraTest.js
+  - test/MKP/04-MonitorObraTest.js
+  - test/MKP/05-SubcontratosTest.js
+  - test/MKP/06-ConfiguracionTest.js
+  - test/MKP/07-DespachosTest.js
+  - test/MKP/08-NegociosAnticipadosTest.js
+  - test/MKP/09-NotasCorreccionTest.js
+  - test/MKP/10-DocumentoTributarioTest.js
+  - test/SCM
+  - test/SCM/00-UsuarioTest.js
+  - test/SCM/01-CrearPedidoMaterialesTest.js
+  - test/SCM/02-AdministracionPMTest.js
+  - test/SCM/03-EnvioOrdenCompraTest.js
+  - test/SCM/04-EnviarCotizacionPMTest.js
+  - test/SCM/05-AprobarCotizacionDesdeProvTest.js
+  - test/SCM/06-EnviarCotizacionOCTest.js
+  - test/SCM/07-AprobarOrdenCompraDesdeProvTest.js
+  - test/SCM/08-RecepcionTest.js
+  - test/SCM/09-FacturacionNCTest.js
+  - test/SCM/10-NotaDeCorreccionTest.js
+  - test/SCM/11-ReversaNotaCorreccionTest.js
+  - test/SCM/12-ReversaFacturacionTest.js
+  - test/SCM/13-ReversaRecepcionTest.js
+  - test/SCM/14-CrearOrdenCompraTest.js
+  - test/SCM/16-BodegaRecibirOCTest.js
+  - test/SCM/17-SubcontratoTest.js
+  - test/OCL
+  - test/OCL/01-CrearCopiaUsuarioTest.js
+  - test/OCL/02-ReemplazarUsuarioTest.js
+
+- name: testcase
+  displayName: 'Seleccione Caso de Prueba'  
+  type: string
+  values:
+  - ' '
+  - TC-49105 Validar Login
+  - TC-58521 Validar ir a configuraciones desde el portal de Marketplace
+  - TC-49109 Validar Logout
+  - TC-55622 Validar Buscar Cotización por Cliente
+  - TC-55621 Validar Visualizar Cotización 1
+  - TC-55623 Validar Descargar PDF para Imprimir de Cotización
+  - TC-55624 Validar Visualizar Historial de Cotización
+  - TC-55625 Validar Visualizar Lineas de Cotización
+  - TC-55626 Validar ocultar Resumen de Cotización
+  - TC-55627 Validar mostrar Resumen de Cotización
+  - TC-55628 Validar Descargar Planilla para Ofertar Cotización
+  - TC-55629 Validar Cargar Planilla para Ofertar Cotización
+  - TC-55631 Validar Enviar Oferta de Cotización
+  - TC-49115 Validar Descargar excel de las órdenes de compra
+  - TC-56862 Validar Buscar órdenes de compra
+  - TC-56863 Validar Abrir Detalle de Orden de Compra
+  - TC-56864 Validar Descargar PDF de Orden de Compra
+  - TC-56865 Validar al Ocultar Caja de Resumen de Precios de la Orden de Compra
+  - TC-56866 Validar al Mostrar Caja de Resumen de Precios de la Orden de Compra
+  - TC-56867 Validar al Ocultar Información del Comprador de la Orden de Compra
+  - TC-56868 Validar al Mostrar Información del Comprador de la Orden de Compra
+  - TC-56869 Validar al Ocultar Información de Despacho de la Orden de Compra
+  - TC-56870 Validar al Mostrar Información de Despacho de la Orden de Compra
+  - TC-56871 Validar al Ocultar Información de Facturación de la Orden de Compra
+  - TC-56872 Validar al Mostrar Información de Facturación de la Orden de Compra
+  - TC-56873 Validar al Ocultar Proveedor de la Orden de Compra
+  - TC-56874 Validar al Mostrar Proveedor de la Orden de Compra
+  - TC-56875 Validar se muestre información historica en todas las líneas de la Orden
+  - TC-56876 Validar pestaña Historial muestre información
+  - TC-56877 Validar pestaña Ver OC muestre vista de PDF
+  - TC-49126 Validar se haga visible Lista de Rubro de Obra del Buscador de Obras
+  - TC-57279 Validar buscar Obra por Región
+  - TC-57280 Validar buscar Obra por Constructora
+  - TC-57281 Validar Ver detalle de Proyecto desde Consulta de Obras
+  - TC-57282 Validar Componentes para enviar Mensaje Visibles
+  - TC-57283 Validar al limpiar filtros se vacién los mismos
+  - TC-57284 Validar Descargar Excel de las Obras
+  - TC-57285 Validar al seleccionar Ver más Proyectos en Pagina de Detalle de Obra muestre Ficha de la Constructora
+  - TC-58545 Validar búsqueda de subcontrato en ejecución
+  - TC-58547 Validar búsqueda de subcontrato por numero de folio
+  - TC-58548 Validar página del detalle del subcontrato
+  - TC-58550 Validar descargar pdf en pestaña Ver estado de pago
+  - TC-58551 Validar información visible de la pestaña Ver SC y anexos
+  - TC-58552 Validar información visible de la pestaña Garantías
+  - TC-58554 Validar descarga PDF página Subcontrato
+  - TC-58522 Validar editar el perfil de usuario
+  - TC-58523 Validar editar informacion general de la empresa
+  - TC-58530 Validar agregar categorías
+  - TC-58793 Validar quitar categorías
+  - TC-58764 Validar añadir Palabra Clave
+  - TC-58531 Validar visualización de página Suscripción
+  - TC-58532 Validar visualización de página Notificaciones
+  - TC-58533 Validar visualización de página Seguridad de dominio
+  - TC-58534 Validar visualización de página Historial
+  - TC-58535 Validar visualización de página Términos y Condiciones
+  - TC-58555 Validar menú Despachos
+  - TC-58556 Validar búsqueda filtro fecha de recepción
+  - TC-58557 Validar que al seleccionar un despacho, se muestre el detalle
+  - TC-58558 Validar que se visualice motivo de rechazo
+  - TC-58560 Validar descarga NR nota de recepción del despacho
+  - TC-58562 Validar envío de comentarios en despacho
+  - TC-58565 Validar descarga de Excel de despachos
+  - TC-58831 Validar buscar Negocios Anticipados filtrando por Producto
+  - TC-58832 Validar buscar Negocios Anticipados filtrando por Cliente
+  - TC-58833 Validar al seleccionar Negocio Anticipado se visualice página de detalles
+  - TC-59597 Validar menú Pedido de Materiales
+  - TC-59598 Validar Creacion de un pedido de materiales
+  - TC-59616 Validar creación de un pedido por la opción Maestro
+  - TC-59368 Validar menú Solicitud Nota Corrección
+  - TC-59371 Validar busqueda por filtro estado arroje resultados
+  - TC-59376 Validar busqueda por filtro cliente arroje resultados
+  - TC-59963 Validar descargar satisfactoriamente documentos buscados previamente
+  - TC-59596 Validar Login en IC
+  - TC-59901 Validar Logout en IC
+  - TC-58566 Validar ir a página Documento Tributario desde el Menú
+  - TC-59998 Validar en Panel de Documentos Tributarios la Razón Social contenga el nombre del usuario
+  - TC-60001 Validar al Buscar Factura de Compra por Filtros Rápidos, Documentos cedidos, arroje resultados
+  - TC-60005 Validar al Buscar en un Rango de Fecha de emisión válido arroje resultados
+  - TC-60008 Validar página de Factura de Compra Electrónica sea visible al seleccionarla
+  - TC-60009 Validar en Página de Detalles de la Factura pestaña de Información de Conciliación visible
+  - TC-60010 Validar en Página de Detalles de la Factura pestaña de Pago visible
+  - TC-60011 Validar en Página de Detalles de la Factura pestaña de Historial visible
+  - TC-60012 Validar Descargar Excel con información de Documentos Tributarios
+  - TC-60042 Validar SubMenú Administración de Pedido
+  - TC-60044 Validar compra de un pedido de Materiales
+  - TC-60045 Validar crear Cotización de pedido
+  - TC-60305 Validar menú Consulta Estado de Orden
+  - TC-60306 Validar Búsqueda de ordenes
+  - TC-60313 Validar Envío de orden
+  - TC-61033 Validar Menú Cotizaciones
+  - TC-61024 Validar Enviar Cotización desde PM
+  - TC-61130 Validar Menú Consultar Cotizaciones
+  - TC-60967 Validar Aprobación desde lado Proveedor
+  - TC-61398 Validar Menú Ventas - Consultar Ordenes de Compra
+  - TC-60977 Validar Aprobar orden de compra desde lado proveedor
+  - TC-61407 Validar al Buscar Cotización por Estado muestre resultados correctos
+  - TC-61422 Validar al seleccionar una Cotización Abierta y con ofertas recibidas se muestre la página de Ofertas Cotización
+  - TC-61444 Validar al ir a Comparar Cotizaciones seleccionadas se muestre cuadro comparativo  
+  - TC-61451 Validar Buscar por No. de Cotización muestre el resultado correcto
+  - TC-61450 Validar Comprar Productos de una Cotización correctamente y sea Enviada a Compra
+  - TC-61398 Validar Menú Ventas - Consultar Ordenes de Compra
+  - TC-61452 Validar búsqueda de orden de compra
+  - TC-60977 Validar Aprobar orden de compra desde lado proveedor
+  - TC-49896 Validar Ingreso de datos obligatorios y PNI para creación de orden de compra"
+  - TC-62279 Validar acceso al Menú Recepción - Recibir Ordenes de Compra
+  - TC-62280 Validar Buscar Ordenes de Compra para Recibir filtrando por Nombre de Proveedor
+  - TC-62281 Validar Buscar Ordenes de Compra para Recibir filtrando por Número de OC
+  - TC-62490 Validar Buscar Orden de Compra por Recibir por Estado de Recepción
+  - TC-62283 Validar Recepción Parcial de Orden de Compra
+  - TC-62477 Validar Recepción Completa desde una Recepción Parcial
+  - TC-62459 Validar menú Ingreso de Facturas
+  - TC-62595 Crear documento de factura sin asociar
+  - TC-62456 Crear Factura con solicitud de nota de corrección
+  - TC-62889 Validar Menú Nota de Corrección
+  - TC-62890 Validar crear nota de corrección
+  - TC-63513 Validar ingreso a página desde Menú de Compras, Crear Orden de Compra
+  - TC-49896 Validar Ingreso de datos obligatorios y PNI para creación de orden de compra
+  - TC-63549 Validar Crear una Orden de Compra usando el motor de Búsqueda de Productos de 1 Producto sin Distribuir Cuentas de Costo
+  - TC-63560 Validar Crear una Orden de Compra usando el motor de Búsqueda de Productos de más de 1 Producto con Distribución de Cuenta de costo por Cantidad
+  - TC-63561 Validar Crear una Orden de Compra usando el motor de Búsqueda de Productos de 1 Producto Con Distribución de Cuentas de Costo por Porcentaje
+  - TC-63551 Validar Crear una Orden de Compra usando el Maestro de Productos agregando 1 producto
+  - TC-63552 Validar Crear una Orden de Compra usando el Maestro de Productos agregando varios productos
+  - TC-63487 Validar submenú Control de Documentos - Notas de Corrección
+  - TC-63516 Validar búsqueda de documentos en estado Totalmente Asociado
+  - TC-63364 Validar la Reversa Notas de Corrección
+  - TC-63665 Validar submenú Control de Documentos - Control de Facturas
+  - TC-63666 Validar búsqueda de facturas en estado Aprobada
+  - TC-63668 Revertir factura de estado Aprobada a Ingresada
+  - TC-63670 Cancelar factura
+  - TC-63806 Validar descarga de Facturas
+  - TC-63808 Validar SubMenú Control de Recepciones
+  - TC-63876 Validar busqueda de Recepciones Ingresadas
+  - TC-63375 Validar Reversa Recepciones
+  - TC-65325 Validar subMenú Recibir ordenes de compra
+  - TC-65224 Validar Recibir Orden de compra
+  - TC-66002 Validar filtro Ultimas 24 horas
+  - TC-66031 Validar histórico de una orden de compra
+  - TC-65228 Crear subcontrato con 4 productos por maestro y subcontratista emite factura
+  - TC-65920 Crear subcontrato agregando un producto y subcontratista sin emitir factura
+  - TC-66221 Validar guardar un subcontrato
+  - TC-66385 Validar menú Configuración One Click
+  - TC-66360 Crear copia de Usuario con un centro de gestión
+  - TC-66488 Validar descarga excel de Usuarios
+  - TC-66495 Crear copia de Usuario con todos los centro de gestión
+  - TC-66729 Crear usuario de reemplazo definitivo
+  - TC-66731 Validar descarga de excel en crear usuario de reemplazo definitivo
+  - TC-66989 Editar perfil de usuario en crear usuario de reemplazo definitivo
+
+
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+  # Replace '10.14' with the latest Node.js LTS version
+    versionSpec: '14.17.6'
+  displayName: 'Install Node.js'
+  
+- script: npm install
+  displayName: 'Install Dependencies'
+
+- script: npm install --save-dev testcafe -g
+  displayName: 'Install TestCafe'
+  
+- script: npm install --save testcafe-reporter-cucumber-json
+  displayName: 'Install Reporter json '  
+
+- script: npm install --save downloads-folder
+  displayName: 'Install Downloads Folder'  
+
+- script: npm install --save @ffmpeg-installer/ffmpeg
+  displayName: 'Install ffmpeg Video Record'
+  
+- script: ENV=${{ parameters.enviroment }}  testcafe chrome:headless ./${{ parameters.fixture }} -t "${{ parameters.testcase }}" --skip-js-errors --video reports/videosReport --video-options failedOnly=true --reporter cucumber-json,xunit:report.xml --reporter-json-folder=reports/jsonReport
+  displayName: 'Run TestCafe Tests'
+
+- script: npm run report
+  condition: succeededOrFailed()
+  displayName: 'Multiple Cucumber HTML Report Generate'
+    
+- task: PublishTestResults@2
+  condition: succeededOrFailed() 
+  inputs:
+    testResultsFiles: 'report.xml'
+    testResultsFormat: 'JUnit'
+    
+- task: PublishCucumberReport@1
+  condition: succeededOrFailed()
+  displayName: 'Publish Cucumber Report'
+  inputs:
+    jsonDir: ./reports/jsonReport
+    outputPath: ./reports
+    theme: hierarchy
+    name: 'Reporte de Pruebas Seleccionadas'
+    title: 'Reporte de Pruebas Seleccionadas'
+
+- task: PublishPipelineArtifact@1
+  condition: succeededOrFailed()
+  displayName: 'Publish HTML Report'
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/s/reports/htmlReport'
+    artifactType: 'pipeline'
+    artifactName: 'htmlReport'
+
+- task: PublishPipelineArtifact@1
+  condition: failed()
+  displayName: 'Publish Video Record'
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/s/reports/videosReport'
+    artifactType: 'pipeline'
+    artifactName: 'videoRecord'
+
+# - task: JakubRumpca.azure-pipelines-html-report.PublishHtmlReport.PublishHtmlReport@1
+#   condition: succeededOrFailed()
+#   displayName: 'Publish HTML Report'
+#   inputs:
+#     reportDir: '$(Build.SourcesDirectory)/reports/htmlReport/index.html'
+    
